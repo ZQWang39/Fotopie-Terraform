@@ -57,15 +57,15 @@ pipeline {
             message "Would you like to provision or destroy the infrastructure?"
             ok "Done"
             parameters {
-            choice (name: 'infrastructure', choices:['provision', 'destroy'])
+            choice (name: 'Infrastructure', choices:['provision', 'destroy'])
             }
         }
         steps{
             script {
-                if (params.infrastructure == 'provision') {
+                if (params.Infrastructure == 'provision') {
                 sh 'terraform init'
                 sh 'terraform apply --auto-approve'
-                } else if (params.infrastructure  == 'destroy') {
+                } else if (params.Infrastructure  == 'destroy') {
                 sh 'terraform destroy --auto-approve'
                 }
             }
