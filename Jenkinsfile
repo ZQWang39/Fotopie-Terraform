@@ -63,9 +63,8 @@ pipeline {
         steps{
             script {
                 if ( "${Infrastructure}" == 'provision') {
-                    echo 'terraform works'
-                // sh 'terraform init'
-                // sh 'terraform apply --auto-approve'
+                sh 'terraform init'
+                sh 'terraform apply --auto-approve'
                 } else if ("${Infrastructure}"  == 'destroy') {
                 sh 'terraform destroy --auto-approve'
                 }
