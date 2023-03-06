@@ -1,6 +1,8 @@
 pipeline {
   agent any
-
+  parameters {
+      choice (name: 'Infrastructure', choices:['Provision', 'Destroy'])
+  }
   environment {
         AWS_ACCESS_KEY_ID = credentials('aws_access_key_id')
         AWS_SECRET_ACCESS_KEY = credentials('aws_secret_access_key')
@@ -8,24 +10,32 @@ pipeline {
       }
 
   stages {
-    stage('Provisioning or Destroying infrastructure'){
-      steps {
-       input {
-            message:"Do you want to provision or destroy the infrastructure?"
-            ok "Done"
-            parameters{
-                choice(name:"infrastructure", choices:["provision", "destroy"], description:"Please choose" )
+
+    stage('Provisioning infrastructure'){
+        when {
+            expression {
+                params.Infrastructure == 'Provision'
             }
         }
-        if (infrastructure == 'Provision') {
-              sh 'terraform init'
-              sh 'terraform apply --auto-approve'
-            } else if (infrastructure == 'Destroy') {
-              sh 'terraform destroy --auto-approve'
+      steps {
+        sh 'terraform init'
+        sh 'terraform apply --auto-approve'
+      }
+
+    }
+
+    stage('Deploy infrastructure') {
+      when {
+            expression {
+                params.Infrastructure == 'Destroy'
             }
+        }
+      steps {      
+        sh 'terraform destroy --auto-approve'
       }
     }
   }
+
 }
 
 
