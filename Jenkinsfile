@@ -54,7 +54,7 @@ pipeline {
     stages {
       stage('Provision or Destroy infrastructure'){
         input {
-            message:"Would you like to provision or destroy the infrastructure?"
+            message "Would you like to provision or destroy the infrastructure?"
             ok "Done"
             parameters {
             choice (name: 'Infrastructure', choices:['Provision', 'Destroy'])
