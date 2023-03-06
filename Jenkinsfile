@@ -53,7 +53,6 @@ pipeline {
 
     stages {
       stage('Provision or Destroy infrastructure'){
-     
         input {
             message:"Would you like to provision or destroy the infrastructure?"
             ok "Done"
@@ -62,10 +61,10 @@ pipeline {
             }
         }
         steps{
-            if (choice == 'Provision') {
+            if (params.Infrastructure == 'Provision') {
                 sh 'terraform init'
                 sh 'terraform apply --auto-approve'
-                } else if (choice == 'Destroy') {
+                } else if (params.Infrastructure  == 'Destroy') {
                 sh 'terraform destroy --auto-approve'
                 }
 
