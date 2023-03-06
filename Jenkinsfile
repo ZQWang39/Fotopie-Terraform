@@ -61,7 +61,7 @@ pipeline {
             choice (name: 'Infrastructure', choices:['Provision', 'Destroy'])
             }
         }
-        Steps{
+        steps{
             if (choice == 'Provision') {
                 sh 'terraform init'
                 sh 'terraform apply --auto-approve'
