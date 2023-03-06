@@ -62,10 +62,11 @@ pipeline {
         }
         steps{
             script {
-                if (parameters.Infrastructure == 'provision') {
-                sh 'terraform init'
-                sh 'terraform apply --auto-approve'
-                } else if (parameters.Infrastructure  == 'destroy') {
+                if (params.Infrastructure == 'provision') {
+                    echo 'terraform works'
+                // sh 'terraform init'
+                // sh 'terraform apply --auto-approve'
+                } else if (params.Infrastructure  == 'destroy') {
                 sh 'terraform destroy --auto-approve'
                 }
             }
