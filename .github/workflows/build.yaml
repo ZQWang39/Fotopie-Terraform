@@ -73,7 +73,7 @@ on:
 
 jobs:
   provision: 
-    if: ${{ inputs.infrastructure == "provision" }} 
+    if: ${{ inputs.infrastructure == 'provision' }} 
     runs-on: ubuntu-latest
 
     steps:
@@ -98,7 +98,7 @@ jobs:
          terraform apply --auto-approve
   
   de-provision:
-    if: ${{ inputs.infrastructure == "deprovision" }} 
+    if: ${{ inputs.infrastructure == 'deprovision' }} 
     runs-on: ubuntu-latest
 
     steps:
