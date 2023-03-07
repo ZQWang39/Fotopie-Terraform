@@ -60,12 +60,6 @@
 
 name: Provision or Destroy Infrastructure
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main 
   workflow_dispatch:
     inputs:
       infrastructure:
@@ -99,7 +93,6 @@ jobs:
         aws-region: ap-southeast-2
     
     - name: Terraform provision AWS resources
-      working-directory: ./terraform
       run: |
          terraform init
          terraform apply --auto-approve
@@ -125,5 +118,4 @@ jobs:
         aws-region: ap-southeast-2
     
     - name: Terraform provision AWS resources
-      working-directory: ./terraform
       run: terraform destroy --auto-approve
