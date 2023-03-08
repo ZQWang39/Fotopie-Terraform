@@ -67,7 +67,7 @@ resource "aws_ecs_service" "fotopie_service" {
   desired_count   = 2
 
   network_configuration {
-    security_groups  = [aws_security_group.ecs_sg.id]
+    security_groups  = [application_security_group.alb-sg.id]
     subnets          = data.aws_subnets.default.ids
     assign_public_ip = true
   }

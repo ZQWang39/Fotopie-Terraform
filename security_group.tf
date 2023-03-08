@@ -41,6 +41,9 @@ resource "ecs_security_group" "ecs_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+# provider "aws" {
+#   region = var.main_region
+# }
 
 # module "application-security-group" {
 #   source  = "terraform-aws-modules/security-group/aws"
@@ -71,6 +74,7 @@ resource "ecs_security_group" "ecs_sg" {
 #   ]
 # }
 
+
 # module "container-security-group" {
 #   source  = "terraform-aws-modules/security-group/aws"
 #   version = "4.17.1"
@@ -85,7 +89,7 @@ resource "ecs_security_group" "ecs_sg" {
 #       from_port        = 0
 #       to_port          = 65535
 #       protocol         = "tcp"
-#       security_groups  = module.application-security-group.security_group_id
+#       source_security_group_id  = module.application-security-group.security_group_id
 #     }
 #   ]
 
