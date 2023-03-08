@@ -24,3 +24,9 @@ variable "bucket_name" {
     default = "www.fotopie.zqwang.net"
   
 }
+
+variable "default_vpc_id" {
+    description = "ID of default VPC"
+    default = "vpc-04936b1b1afaf216b"
+  
+}
