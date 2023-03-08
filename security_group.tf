@@ -1,7 +1,7 @@
 
 
 # ALB Security Group: Edit to restrict access to the application
-resource "application_security_group" "alb-sg" {
+resource "aws_security_group" "alb-sg" {
   name        = "application-loadbalancer-security-group"
   description = "Inbound traffic to port 80 from anywhere"
   vpc_id      = var.default_vpc_id
@@ -22,7 +22,7 @@ resource "application_security_group" "alb-sg" {
 }
 
 # this security group for ecs - Traffic to the ECS cluster should only come from the ALB
-resource "ecs_security_group" "ecs_sg" {
+resource "aws_security_group" "ecs_sg" {
   name        = "ecs-tasks-security-group"
   description = "allow inbound traffic from the ALB only"
   vpc_id      = var.default_vpc_id
