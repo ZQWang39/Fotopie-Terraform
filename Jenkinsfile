@@ -11,6 +11,12 @@ pipeline {
 
   stages {
 
+    stage ('Terraform init'){
+      steps {
+        sh 'terraform init'
+      }
+    }
+
     stage('Provisioning infrastructure'){
         when {
             expression {
@@ -47,6 +53,12 @@ pipeline {
 //       }
 
 //     stages {
+
+        //  stage('Terraform init'){
+        //        steps{
+        //         sh 'terraform init'
+        //        }
+        //  }
 //       stage('Provision or Destroy infrastructure'){
 //         input {
 //             message "Would you like to provision or destroy the infrastructure?"
@@ -58,7 +70,6 @@ pipeline {
 //         steps{
 //             script {
 //                 if ( "${Infrastructure}" == 'provision') {
-//                 sh 'terraform init'
 //                 sh 'terraform apply --auto-approve'
 //                 } else if ("${Infrastructure}"  == 'destroy') {
 //                 sh 'terraform destroy --auto-approve'
